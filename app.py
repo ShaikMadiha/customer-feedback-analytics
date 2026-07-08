@@ -5,10 +5,10 @@ from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassific
 app = Flask(__name__)
 
 # Load tokenizer and model
-MODEL_PATH = "models/distilbert_model"
+MODEL_NAME = "madihashaik/customer-feedback-distilbert"
 
-tokenizer = DistilBertTokenizerFast.from_pretrained(MODEL_PATH)
-model = DistilBertForSequenceClassification.from_pretrained(MODEL_PATH)
+tokenizer = DistilBertTokenizerFast.from_pretrained(MODEL_NAME)
+model = DistilBertForSequenceClassification.from_pretrained(MODEL_NAME)
 
 model.eval()
 
@@ -67,4 +67,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
