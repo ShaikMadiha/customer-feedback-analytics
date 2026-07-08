@@ -135,13 +135,17 @@ The application provides:
 
 
 ---
-## Model
+## 🤖 Model
 
-The trained DistilBERT model is not included in this repository because the model file exceeds GitHub's 100 MB file size limit.
+The fine-tuned DistilBERT model is not included in this repository because the model file exceeds GitHub's 100 MB file size limit.
 
-To run the application, place the trained model inside:
+To run the application, place the trained model in the following directory:
 
+```text
 models/distilbert_model/
+```
+
+Similarly, the original dataset and intermediate processed datasets are not included in this repository to keep it lightweight.
 
 ---
 
