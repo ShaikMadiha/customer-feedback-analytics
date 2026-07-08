@@ -95,7 +95,9 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-
+```bash
+pip install -r requirements-train.txt
+```
 ### Run the application
 
 ```bash
