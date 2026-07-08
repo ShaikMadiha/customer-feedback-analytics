@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.vscode/
+.env
+.DS_Store
+Thumbs.db
+
+distilbert_output/
+models/distilbert_model/
+
+data/Reviews.csv
+data/preprocessed_reviews.csv
+data/processed_reviews.csv

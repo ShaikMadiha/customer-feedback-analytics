@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Feedback Analytics</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+
+<body>
+
+<div class="theme-toggle">
+
+    <button id="theme-btn">🌙</button>
+
+</div>
+
+<div class="container">
+
+    <h1>Customer Feedback Analytics</h1>
+
+    <p class="subtitle">
+        AI Powered Sentiment Analysis using DistilBERT
+    </p>
+
+    <form action="/predict" method="POST">
+
+        <textarea
+    id="review"
+    name="review"
+    rows="8"
+    maxlength="1000"
+    placeholder="Type or paste your customer review here..."
+    required>{{ result.review if result else '' }}</textarea>
+
+<div class="counter">
+    <span id="charCount">0</span>/1000 characters
+</div>
+
+        <button type="submit">
+            🔍 Analyze Review
+        </button>
+
+    </form>
+
+    {% if result %}
+
+    <div class="result-card">
+
+        <h2>Analysis Result</h2>
+
+        <div class="sentiment-card">
+
+            {% if result.sentiment == "Positive" %}
+        
+                <div class="badge positive">
+                    😊 Positive
+                </div>
+        
+            {% elif result.sentiment == "Negative" %}
+        
+                <div class="badge negative">
+                    😞 Negative
+                </div>
+        
+            {% else %}
+        
+                <div class="badge neutral">
+                    😐 Neutral
+                </div>
+        
+            {% endif %}
+        
+        </div>
+
+        <div class="confidence">
+
+            Confidence :
+            <strong>{{ result.confidence }}%</strong>
+
+        </div>
+
+        <div class="probability">
+
+            <h3>Class Probabilities</h3>
+
+            <div class="bar">
+
+                <label>Positive</label>
+
+                <progress
+                    value="{{ result.positive }}"
+                    max="100">
+                </progress>
+
+                <span>{{ result.positive }}%</span>
+
+            </div>
+
+            <div class="bar">
+
+                <label>Neutral</label>
+
+                <progress
+                    value="{{ result.neutral }}"
+                    max="100">
+                </progress>
+
+                <span>{{ result.neutral }}%</span>
+
+            </div>
+
+            <div class="bar">
+
+                <label>Negative</label>
+
+                <progress
+                    value="{{ result.negative }}"
+                    max="100">
+                </progress>
+
+                <span>{{ result.negative }}%</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+<div class="about">
+
+    <h2>🚀 About This Project</h2>
+
+    <p class="about-text">
+        Customer Feedback Analytics is an AI-powered web application that analyzes
+        customer reviews using a fine-tuned DistilBERT transformer model. The
+        application classifies each review as <strong>Positive</strong>,
+        <strong>Neutral</strong>, or <strong>Negative</strong> and provides
+        confidence scores along with class probabilities to help users better
+        understand customer sentiment. The project is built with Flask for the
+        backend and features a clean, responsive interface with Light and Dark
+        mode support.
+    </p>
+
+    <div class="features">
+
+        <div class="feature">
+            🤖
+            <h3>DistilBERT Model</h3>
+            <p>Fine-tuned transformer model for three-class sentiment analysis.</p>
+        </div>
+
+        <div class="feature">
+            ⚡
+            <h3>Real-Time Prediction</h3>
+            <p>Analyzes customer reviews instantly and returns sentiment with confidence.</p>
+        </div>
+
+        <div class="feature">
+            📊
+            <h3>Prediction Details</h3>
+            <p>Displays sentiment, confidence score, and probability distribution for every review.</p>
+        </div>
+
+        <div class="feature">
+            🌙
+            <h3>Modern User Interface</h3>
+            <p>Responsive web interface with Light/Dark mode for a better user experience.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+
+    Built with ❤️ using Flask, DistilBERT, Hugging Face Transformers and PyTorch.
+
+</footer>
+
+</body>
+
+</html>
